@@ -1,0 +1,28 @@
+<div class="container">
+  <div>
+    <div class="row">
+      <div class="col-sm-12 col-md-4" *ngFor="let item of restaurants">
+        <mat-card id='cardHover' routerLink="booking/{{item.id}}" class="example-card mt-5">
+
+          <img width="200" height="250" mat-card-image [src]="item.image" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+            <mat-card-title>
+              <h2>{{item.name}}</h2>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <h4 class="font-weight-bold">{{item.address}}</h4>
+            </mat-card-subtitle>
+          </mat-card-content>
+          <mat-card-actions>
+            <button id='button' mat-raised-button routerLink="booking/{{item.id}}">Book</button>
+
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>

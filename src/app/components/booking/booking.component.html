@@ -1,0 +1,93 @@
+<div *ngIf="restaurantSelected" [ngStyle]="{'background-image':
+  'url('+restaurantSelected.image+')'}" id='background-image'>
+
+  <!-- main image comtainer -->
+  <!-- <div class="container">
+      <div id="restImag"><img id="imgSize" [src]="restaurantSelected.image" alt="details"> </div>
+    </div> -->
+  <!-- end of main image container for booking restaurant -->
+
+  <!-- booking form container -->
+  <div class="container">
+    <div class="container" style="padding-bottom: 3rem;">
+      <div class="row d-flex justify-content-around ">
+
+        <!-- column restaurant name -->
+        <mat-card class="col-md-5 col-sm-12 " style="margin-bottom:2rem" id="containerForms">
+
+          <div id="innerContainer">
+            <h1>{{restaurantSelected.name}}</h1>
+            <h4>{{restaurantSelected.address}}</h4>
+            <h4>
+              <p>{{restaurantSelected.description}}</p>
+            </h4>
+
+          </div>
+          <img class="d-none d-lg-block" src="../../../assets/logo.png" alt="logo" id="logo1">
+        </mat-card>
+
+        <!-- column froom booking -->
+        <mat-card class="col-md-5 col-sm-12" id="containerForms">
+          <div id="innerContainer">
+            <h4>Get Your Booking Here!!!</h4>
+          </div>
+
+          <div id="innerContainer1">
+            <div class="container">
+              <form [formGroup]="bookingRestaurant" class="example-full-width d-flex flex-column ">
+
+                <mat-form-field floatLabel="never">
+                  <input type="text" formControlName="name" matInput placeholder="Name of Contact">
+                </mat-form-field>
+
+                <mat-form-field floatLabel="never">
+                  <input type="email" formControlName="email" matInput placeholder="Email of Contact">
+                </mat-form-field>
+
+                <mat-form-field floatLabel="never">
+                  <input type="number" formControlName="customers" matInput placeholder="Persons in Book">
+                </mat-form-field>
+
+                <mat-form-field floatLabel="never">
+                  <mat-select matNativeControl required formControlName="timeBooking"
+                    placeholder="{{ restaurantSelected.turns.length>0?'Available Turns ('+restaurantSelected.turns.length+')':'No turns available'}}">
+                    <mat-option *ngFor="let turn of restaurantSelected.turns" [value]="turn.id+1">
+                      {{turn.name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field floatLabel="never">
+                  <input placeholder="Choose a Date" matInput [matDatepicker]="date" formControlName="date">
+                  <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+                  <mat-datepicker #date></mat-datepicker>
+                </mat-form-field>
+
+
+              </form>
+            </div>
+
+
+
+          </div>
+          <div class=" row d-flex justify-content-around" style="margin-top:1rem">
+            <button id="button" [disabled]="!bookingRestaurant.valid" (click)="bookRest()">Book</button>
+            <button id="button" [disabled]="!bookingRestaurant.valid" (click)="bookAndPay()">Paying Book</button>
+
+          </div>
+
+        </mat-card>
+
+      </div>
+      <!-- end of row of column of boking anf restaurant name -->
+    </div>
+
+
+
+
+
+  </div>
+  <!-- end of booking form container -->
+
+</div>
+

@@ -1,0 +1,48 @@
+<mat-card>
+  <mat-vertical-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="false">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Payment</ng-template>
+        <div>Pago</div>
+
+        <form novalidate (ngSubmit)="buyAndGenerateCodeofPurchase()" [formGroup]="stripeTest">
+          <input type="text" formControlName="name" placeholder="Jane Doe">
+          <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+          <button type="submit" mat-button matStepperNext color="success">
+            Next
+          </button>
+        </form>
+
+
+        <!-- <ng-template matStepLabel>Fill out your name</ng-template>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div> -->
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" [editable]="false">
+      <ng-template matStepLabel>Data to Send</ng-template>
+      <div>
+        <h1>Payment data</h1>
+        <h3>Name: {{bookedWithPayment.name}} </h3>
+        <h3>Price: {{bookedWithPayment.price}}</h3>
+        <h3>Booking Code: {{bookedWithPayment.location}}</h3>
+
+
+      </div>
+
+
+      <button mat-button matStepperPrevious (click)="cancelBooking()" color="secundary">Cancel</button>
+      <button mat-button matStepperNext (click)="confirmBooking()" color="success">Confirm</button>
+    </mat-step>
+
+    <mat-step [editable]="false">
+      <ng-template matStepLabel>Process Status</ng-template>
+      <h3>{{successMessage}}</h3>
+    </mat-step>
+  </mat-vertical-stepper>
+</mat-card>
